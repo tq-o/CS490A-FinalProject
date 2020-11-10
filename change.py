@@ -1,18 +1,20 @@
 import pandas as pd
-
+from random import sample, randrange 
+import copy
 testcsv = pd.read_csv("mtsamples_copy.csv")
-# testcsv.replace(to_replace =[" Hospice - Palliative Care", " General Medicine", " Lab Medicine - Pathology", " Cosmetic / Plastic Surgery", " Physical Medicine - Rehab",
-# " Allergy / Immunology", " Psychiatry / Psychology", " Radiology", " Hematology - Oncology", " Obstetrics / Gynecology",
-# " Dentistry", " Ophthalmology", " Dermatology", " ENT - Otolaryngology", " Podiatry", " Nephrology", " Gastroenterology", " Neurology", " Urology", " Pediatrics - Neonatal", " Cardiovascular / Pulmonary", " Endocrinology", " Rheumatology"],  
-#                  value = "medicines",  
-#                   inplace = True) 
-# testcsv.replace(to_replace =[" Surgery", " Chiropractic", " Bariatrics", " Neurosurgery", " Autopsy", " Orthopedic"],  
-#                  value = "surgery",  
-#                   inplace = True)   
-# testcsv.replace(to_replace =[" Diets and Nutritions", " Sleep Medicine", " Pain Management", " Speech - Language", " IME-QME-Work Comp etc.", " Letters", " Office Notes", " Emergency Room Reports", " Discharge Summary", " SOAP / Chart / Progress Notes", " Consult - History and Phy."],  
-#                  value = "other",  
-#                   inplace = True) 
-# testcsv.to_csv("mtsamples_copy.csv",  
-#                   index = False)
+
 print(len(testcsv))
-print(testcsv["medical_specialty"].nunique())
+sur = list(testcsv[testcsv["medical_specialty"] == 'surgery'].index.values)
+med = list(testcsv[testcsv["medical_specialty"] == 'medicines'].index.values)
+other = list(testcsv[testcsv["medical_specialty"] == 'other'].index.values)
+t = copy.copy(sur)
+
+# print(len(sur))
+# print(len(med))
+# print(len(other))
+# print(len(sample(sur,int(len(other)*88/100))))
+t1 = [sur.pop(randrange(len(sur))) for _ in range(900)]
+t2 = [med.pop(randrange(len(med))) for _ in range(900)]
+t3 = [med.pop(randrange(len(med))) for _ in range(850)]
+
+# for 
